@@ -1,12 +1,5 @@
-from modelo import get_diretor
-
-
-def valida_diretor(nome):
-    if len(nome) == 0:
+def valida_diretor(nome_completo):
+    if len(nome_completo) == 0:
         return False
-
-#    diretor = get_diretor(nome)
-#    if len(diretor) > 0:
-#        return False
 
     return True

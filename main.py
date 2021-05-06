@@ -32,10 +32,9 @@ def update(tabela, chave, valor_chave, colunas, valores):
 
 
 def select(tabela, chave=1, valor_chave=1, limit=100, offset=0):
-    print(query(f"""SELECT * FROM {tabela} WHERE {chave} = %s LIMIT {limit} offset {offset}""", (valor_chave,)))
     return query(f"""SELECT * FROM {tabela} WHERE {chave} = %s LIMIT {limit} offset {offset}""", (valor_chave,))
 
-#delete("diretores","nome_completo","Osmar")
+#delete("diretores","nome_completo","douglas")
 #insert("diretores", ["nome_completo"], ["Douglas"])
 #update('diretores',"id", 3, ['id','nome_completo'],['3','pedrin'])
 #select("diretores","nome_completo","marcelo")

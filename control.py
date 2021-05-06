@@ -16,8 +16,8 @@ def hello():
         return request.json
 
 
-@app.route("/diretores", methods=["GET", "POST", "DELETE", "PATCH"])
-def insert_diretor():
+@app.route("/diretores", methods=["GET", "POST", "DELETE"])
+def diretor():
     if request.method == "GET":
         return jsonify(query("Select * From diretores"))
     elif request.method == "POST":
@@ -28,7 +28,8 @@ def insert_diretor():
             return jsonify(diretor_from_db(diretor_novo))
         else:
             return jsonify({"erro": "diretor invalido"})
-
+    elif request.method == "DELETE":
+        return jsonify(delete("diretores", "id", request.json["id"]))
 
 @app.route("/diretores/<int:id>", methods=["PUT"])
 def idiomas(id):
