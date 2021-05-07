@@ -9,3 +9,13 @@ def valida_diretor_id(id):
         return False
 
     return True
+
+
+def valida_usuario(nome_completo, CPF):
+    if len(nome_completo) == 0:
+        return False
+
+    if len(CPF) == 0:
+        return False
+
+    return True

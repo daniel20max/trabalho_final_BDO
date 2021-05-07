@@ -1,8 +1,9 @@
 from flask import Flask, jsonify, request
 from main import query
 from main import update, select, insert, delete
-from valida import valida_diretor, valida_diretor_id
-from modelo import insert_diretor, get_diretor, update_diretor, deletar_diretor
+from valida import valida_diretor, valida_diretor_id, valida_usuario
+from modelo import insert_diretor, get_diretor, update_diretor, deletar_diretor, select_usuarios, insert_usuario, \
+    get_usuario
 from serializer import *
 
 app = Flask(__name__)
@@ -35,7 +36,7 @@ def diretor():
             diretor_deletado = deletar_diretor(diretor("id"))
             return jsonify(diretor_from_db_id(diretor_deletado))
         else:
-            return jsonify({"Erro":"valor nao deletado"})
+            return jsonify({"Erro": "valor nao deletado"})
 
 
 @app.route("/diretores/<int:id>", methods=["PATCH"])
@@ -48,6 +49,25 @@ def patch_diretor(id):
             return jsonify(diretor_from_db(diretor_alterado))
         else:
             return jsonify({"Erro": "Valor nao alterado"})
+
+
+@app.route("/usuarios", methods=["GET"])
+def usuarios_get():
+    nome_completo = nome_usuario_from_web(**request.args)
+    usuarios = select_usuarios(nome_completo)
+    usuarios_from_db = [usuario_from_db(usuario) for usuario in usuarios]
+    return jsonify(usuarios_from_db)
+
+
+@app.route("/usuarios", methods=["POST"])
+def usuarios_post():
+    usuario = usuario_from_web(**request.json)
+    if valida_usuario(**usuario):
+        id_usuario = insert_usuario(**usuario)
+        usuario_cadastrado = get_usuario(id_usuario)
+        return jsonify(usuario_from_db(usuario_cadastrado))
+    else:
+        return jsonify({"erro": "Usuário inválido"})
 
 
 @app.route("/generos", methods=["GET", "POST", "DELETE", "PATCH"])

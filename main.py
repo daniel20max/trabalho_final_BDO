@@ -42,3 +42,4 @@ def select_like(tabela, chave=1, valor_chave=1, limit=100, offset=0):
 #insert("diretores", ["nome_completo"], ["Douglas"])
 #update('diretores',"id", 24, ['id','nome_completo'],['3','pedrin'])
 #select("diretores","nome_completo","john")
+#insert("usuarios", ["nome_completo","CPF"], ["Daniel Max","32165498740"])
