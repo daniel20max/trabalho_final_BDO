@@ -8,3 +8,15 @@ def diretor_from_db(*args):
     return {
         "nome_completo": args[0],
     }
+
+
+def diretor_from_web_id(**kwargs):
+    return {
+        "id": kwargs["id"] if "id" in kwargs else "",
+    }
+
+
+def diretor_from_db_id(*args):
+    return {
+        "id": args[0],
+    }

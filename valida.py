@@ -3,3 +3,9 @@ def valida_diretor(nome_completo):
         return False
 
     return True
+
+def valida_diretor_id(id):
+    if len(id) == 0:
+        return False
+
+    return True
