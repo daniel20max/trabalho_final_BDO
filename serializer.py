@@ -42,8 +42,10 @@ def genero_from_db(genero):
         "nome": genero["nome"]
     }
 
+
 def nome_genero_from_web(**kwargs):
     return kwargs["nome"] if "nome" in kwargs else ""
+
 
 def locacoes_from_web(**kwargs):
     return {
@@ -63,5 +65,60 @@ def locacoes_from_db(locacao):
         "usuarios_id": locacao["usuarios_id"]
     }
 
+
 def data_locacoes_from_web(**kwargs):
     return kwargs["data_inicio"] if "data_inicio" in kwargs else ""
+
+
+def filmes_from_web(**kwargs):
+    return {
+        "titulo": kwargs["titulo"] if "titulo" in kwargs else "",
+        "ano": kwargs["ano"] if "ano" in kwargs else "",
+        "classificacao": kwargs["classificacao"] if "classificacao" in kwargs else "",
+        "preco": str(kwargs["preco"]) if "preco" in kwargs else "",
+        "diretores_id": kwargs["diretores_id"] if "diretores_id" in kwargs else "",
+        "generos_id": kwargs["generos_id"] if "generos_id" in kwargs else "",
+    }
+
+
+def filmes_from_db(filmes):
+    return {
+        "id": filmes["id"],
+        "titulo": filmes["titulo"],
+        "ano": filmes["ano"],
+        "classificacao": filmes["classificacao"],
+        "preco": filmes["preco"],
+        "diretores_id": filmes["diretores_id"],
+        "generos_id": filmes["generos_id"]
+    }
+
+
+def filmes_titulos_from_web(**kwargs):
+    return kwargs["titulo"] if "titulo" in kwargs else ""
+
+
+def pagamento_from_web(**kwargs):
+    return {
+        "tipo": kwargs["tipo"] if "tipo" in kwargs else "",
+        "status": kwargs["status"] if "status" in kwargs else "",
+        "codigo_pagamento": kwargs["codigo_pagamento"] if "codigo_pagamento" in kwargs else "",
+        "valor": str(kwargs["valor"]) if "valor" in kwargs else "",
+        "data": kwargs["data"] if "data" in kwargs else "",
+        "locacoes_id": kwargs["locacoes_id"] if "locacoes_id" in kwargs else "",
+    }
+
+
+def pagamento_from_db(pagamento):
+    return {
+        "id": pagamento["id"],
+        "tipo": pagamento["tipo"],
+        "status": pagamento["status"],
+        "codigo_pagamento": pagamento["codigo_pagamento"],
+        "valor": pagamento["valor"],
+        "data": pagamento["data"],
+        "locacoes_id": pagamento["locacoes_id"]
+    }
+
+
+def pagamento_tipo_from_web(**kwargs):
+    return kwargs["tipo"] if "tipo" in kwargs else ""
