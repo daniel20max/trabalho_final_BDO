@@ -70,16 +70,50 @@ def usuarios_post():
         return jsonify({"erro": "Usuário inválido"})
 
 
+<<<<<<< Updated upstream
 @app.route("/generos", methods=["GET", "POST", "DELETE", "PATCH"])
 def genero():
+=======
+@app.route("/pagamento", methods=["GET", "POST"])
+def pagamento_getpost():
+>>>>>>> Stashed changes
     if request.method == "GET":
         return jsonify(select("generos"))
     elif request.method == "POST":
+<<<<<<< Updated upstream
         return jsonify(insert("generos", ["nome"], [request.json["nome"]]))
     elif request.method == "DELETE":
         return jsonify(delete("generos", "id", request.json["id"]))
     elif request.method == "PATCH":
         return jsonify(update("generos", "id", request.json["id"]))
+=======
+        pagamento = pagamento_from_web(**request.json)
+        if valida_pagamento(**pagamento):
+            id_pagamento = insert_pagamento(**pagamento)
+            id_pagamento_add = get_pagamento(id_pagamento)
+            return jsonify(pagamento_from_db(id_pagamento_add))
+        else:
+            return jsonify({"Erro": "Valor nao adicionado"})
+
+
+@app.route("/pagamento/<int:id>", methods=["DELETE", "PUT", "PATCH"])
+def pagamento_delete_update(id):
+    if request.method == "DELETE":
+        try:
+            deletar_pagamento(id)
+            return jsonify({"Valor": "Deletado"})
+        except:
+            return jsonify({"Erro": "Valor nao Excluido"})
+    elif request.method == "PUT" or "PATCH":
+        pagamento = pagamento_from_web(**request.json)
+        if valida_pagamento(**pagamento):
+            update_pagamento(id, **pagamento)
+            pagamento_novo = get_pagamento(id)
+            return jsonify(pagamento_from_db(pagamento_novo))
+        else:
+            return jsonify({"Erro": "Valor nao foi alterado"})
+
+>>>>>>> Stashed changes
 
 
 if __name__ == "__main__":
