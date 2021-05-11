@@ -81,15 +81,15 @@ def filmes_from_web(**kwargs):
     }
 
 
-def filmes_from_db(filmes):
+def filmes_from_db(filme):
     return {
-        "id": filmes["id"],
-        "titulo": filmes["titulo"],
-        "ano": filmes["ano"],
-        "classificacao": filmes["classificacao"],
-        "preco": filmes["preco"],
-        "diretores_id": filmes["diretores_id"],
-        "generos_id": filmes["generos_id"]
+        "id": filme["id"],
+        "titulo": filme["titulo"],
+        "ano": filme["ano"],
+        "classificacao": filme["classificacao"],
+        "preco": filme["preco"],
+        "diretores_id": filme["diretores_id"],
+        "generos_id": filme["generos_id"]
     }
 
 

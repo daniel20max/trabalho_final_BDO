@@ -23,7 +23,7 @@ def hello():
 
 
 @app.route("/diretores", methods=["GET", "POST"])
-def diretor_GetPost():
+def diretor_get_post():
     if request.method == "GET":
         nome_completo = nome_usuario_from_web(**request.args)
         diretores = select_diretores(nome_completo)
@@ -58,7 +58,7 @@ def diretor_delete_update(id):
 
 
 @app.route("/usuarios", methods=["GET", "POST"])
-def usuario_getpost():
+def usuario_get_post():
     if request.method == "GET":
         nome_completo = nome_usuario_from_web(**request.args)
         usuarios = select_usuarios(nome_completo)
@@ -128,7 +128,7 @@ def genero_delete_update(id):
 
 
 @app.route("/locacoes", methods=["GET", "POST"])
-def locacoes_getpost():
+def locacoes_get_post():
     if request.method == "GET":
         data = data_locacoes_from_web(**request.args)
         locacao = select_locacoes(data)
@@ -163,7 +163,7 @@ def locacoes_delete_update(id):
 
 
 @app.route("/filmes", methods=["GET", "POST"])
-def filmes_getpost():
+def filmes_get_post():
     if request.method == "GET":
         titulo = filmes_titulos_from_web(**request.args)
         filmes = select_filme(**titulo)
@@ -198,7 +198,7 @@ def filmes_delete_update(id):
 
 
 @app.route("/pagamento", methods=["GET", "POST"])
-def filmes_getpost():
+def pagamento_get_post():
     if request.method == "GET":
         tipo = pagamento_tipo_from_web(**request.args)
         pagamentos = select_pagamento(**tipo)
@@ -208,14 +208,14 @@ def filmes_getpost():
         pagamento = pagamento_from_web(**request.json)
         if valida_pagamento(**pagamento):
             id_pagamento = insert_pagamento(**pagamento)
-            id_pagamento_add = get_pagamento(id_pagamento)
-            return jsonify(pagamento_from_db(id_pagamento_add))
+            pagamento_novo = get_pagamento(id_pagamento)
+            return jsonify(pagamento_from_db(pagamento_novo))
         else:
             return jsonify({"Erro": "Valor nao adicionado"})
 
 
 @app.route("/pagamento/<int:id>", methods=["DELETE", "PUT", "PATCH"])
-def filmes_delete_update(id):
+def pagamento_delete_update(id):
     if request.method == "DELETE":
         try:
             deletar_pagamento(id)
