@@ -3,7 +3,6 @@ from main import query
 def consultar_locacoes_id_do_filme(id):
     return query(f"""
 select
-	locacoes.id as locacao_id,
 	filmes.id as filmes_id,
 	filmes.titulo as titulo_do_filme,
     usuarios.nome_completo as nome_Usuario,

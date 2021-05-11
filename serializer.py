@@ -59,8 +59,8 @@ def locacoes_from_web(**kwargs):
 def locacoes_from_db(locacao):
     return {
         "id": locacao["id"],
-        "data_inicio": locacao["data_inicio"],
-        "data_fim": locacao["data_fim"],
+        "data_inicio": locacao["data_inicio"].strftime('%d-%m-%Y'),
+        "data_fim": locacao["data_fim"].strftime('%d-%m-%Y'),
         "filmes_id": locacao["filmes_id"],
         "usuarios_id": locacao["usuarios_id"]
     }
@@ -87,7 +87,7 @@ def filmes_from_db(filme):
         "titulo": filme["titulo"],
         "ano": filme["ano"],
         "classificacao": filme["classificacao"],
-        "preco": filme["preco"],
+        "preco": str(filme["preco"]),
         "diretores_id": filme["diretores_id"],
         "generos_id": filme["generos_id"]
     }
@@ -114,11 +114,29 @@ def pagamento_from_db(pagamento):
         "tipo": pagamento["tipo"],
         "status": pagamento["status"],
         "codigo_pagamento": pagamento["codigo_pagamento"],
-        "valor": pagamento["valor"],
-        "data": pagamento["data"],
+        "valor": str(pagamento["valor"]),
+        "data": pagamento["data"].strftime('%d-%m-%Y'),
         "locacoes_id": pagamento["locacoes_id"]
     }
 
 
 def pagamento_tipo_from_web(**kwargs):
     return kwargs["tipo"] if "tipo" in kwargs else ""
+
+def consultar_filme_id_from_web(**kwargs):
+    return {
+        "id": kwargs["id"] if "id" in kwargs else "",
+        "titulo": kwargs["titulo"] if "titulo" in kwargs else "",
+        "nome_completo": kwargs["nome_completo"] if "nome_completo" in kwargs else "",
+        "data_inicio": kwargs["data_inicio"] if "data_inicio" in kwargs else "",
+        "status": kwargs["status"] if "status" in kwargs else "",
+    }
+
+def consultar_filme_id_from_db(consulta_filme):
+    return {
+        "id": consulta_filme["id"],
+        "titulo": consulta_filme["titulo"],
+        "nome_completo": consulta_filme["nome_completo"],
+        "data_inicio": consulta_filme["data_inicio"].strftime('%d-%m-%Y'),
+        "status": consulta_filme["status"],
+    }

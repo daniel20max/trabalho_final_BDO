@@ -9,7 +9,9 @@ from modelo import insert_diretor, get_diretor, update_diretor, deletar_diretor,
 from serializer import nome_usuario_from_web, diretor_from_db, diretor_from_web, usuario_from_db, usuario_from_web, \
     nome_genero_from_web, genero_from_db, genero_from_web, data_locacoes_from_web, locacoes_from_db, locacoes_from_web, \
     filmes_titulos_from_web, filmes_from_db, filmes_from_web, pagamento_tipo_from_web, pagamento_from_db, \
-    pagamento_from_web
+    pagamento_from_web, consultar_filme_id_from_web, consultar_filme_id_from_db
+from Consulta import consultar_locacoes_id_do_filme, consultar_locacao_id, consultar_locacao_do_usuario_id
+
 
 app = Flask(__name__)
 
