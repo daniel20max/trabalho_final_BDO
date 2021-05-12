@@ -1,3 +1,5 @@
+from datetime import date
+
 from mysql.connector import connect
 
 show_schemas = "SHOW SCHEMAS"
@@ -43,3 +45,5 @@ def select_like(tabela, chave=1, valor_chave=1, limit=100, offset=0):
 #update('diretores',"id", 24, ['id','nome_completo'],['3','pedrin'])
 #select("diretores","nome_completo","john")
 #insert("usuarios", ["nome_completo","CPF"], ["Daniel Max","32165498740"])
+#insert("locacoes",["data_inicio", "data_fim", "filmes_id", "usuarios_id"],["2020-07-05" , "2020-07-10", 1, 1])
+#insert("filmes",["titulo","ano","classificacao","preco","diretores_id","generos_id"],["um dia de furia","2021","10","6.66",1,1])
